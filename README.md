@@ -1,2 +1,2 @@
-# Solution-for-Leetcode-Algorithms-Problems
+# Leetcode
 JAVA
