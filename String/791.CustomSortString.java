@@ -23,13 +23,14 @@ S and T consist of lowercase letters only.
 
 
 12/10 Use count sort method
+12/11 new method
 */
-
+/*
 class Solution {
     public String customSortString(String S, String T) {
         if(S == "") return T;
         int N =26;
-        /**/
+        //
         
         int[] count = new int[N+2];
         char[] aux = new char[T.length()];
@@ -43,5 +44,32 @@ class Solution {
             aux[count[S.indexOf(T.charAt(i))+1]++] = T.charAt(i);
         }
         return new String(aux);
+    }
+}
+*/
+class Solution {
+    public String customSortString(String S, String T) {
+        if(S =="" || S.length() == 1) return T;
+        int[] count = new int[26];
+        char[] ans = T.toCharArray();
+        for(char c: ans){
+            count[c - 'a']++;
+        }//the frequency of every kind letter in T
+        
+        int index = 0;
+        for(char c: S.toCharArray()){
+            while(count[c - 'a'] >0){
+                ans[index++] = c;//rewrite the T
+                count[c - 'a']--;
+            }
+        }
+        for(int i = 0;i<26 && index<T.length();i++){
+            while(count[i] > 0){
+                ans[index++] = (char)(i+'a');
+                count[i]--;
+            }
+        }
+        
+        return new String(ans);
     }
 }
